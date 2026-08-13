@@ -8,15 +8,15 @@
 <link rel="icon" href="img/selo-polo.png">
 <style>
   :root {
-    --vermelho: #B3181E;
-    --vermelho-forte: #8E1217;
-    --laranja: #FF6B4A;
-    --escuro: #33100C;
-    --escuro2: #4A150F;
-    --creme: #FFF1E4;
-    --cinza-claro: #EDEAE6;
-    --texto: #2A1815;
-    --texto-claro: #6b5a55;
+    --vermelho: #E8650A;
+    --vermelho-forte: #C9560A;
+    --laranja: #FFA94D;
+    --escuro: #2E2E2E;
+    --escuro2: #3D3D3D;
+    --creme: #F2F2F2;
+    --cinza-claro: #EDEDED;
+    --texto: #262626;
+    --texto-claro: #6b6b6b;
   }
   * { box-sizing: border-box; }
   body { font-family: 'Roboto', -apple-system, "Segoe UI", Arial, sans-serif; margin: 0; color: var(--texto); line-height: 1.6; background: #fff; }
@@ -24,8 +24,8 @@
   img { max-width: 100%; display: block; }
   .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--vermelho); color: #fff; padding: 13px 28px; border-radius: 8px; font-weight: 700; font-size: 0.92rem; border: none; cursor: pointer; transition: background 0.15s ease; }
   .btn:hover { background: var(--vermelho-forte); }
-  .btn-accent { background: var(--laranja); color: #2A1815; }
-  .btn-accent:hover { background: #ff7e5f; }
+  .btn-accent { background: var(--laranja); color: #262626; }
+  .btn-accent:hover { background: #ffbb66; }
   .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
   section { padding: 64px 0; }
   h2 { font-size: 1.9rem; margin: 0 0 8px; color: var(--texto); }
@@ -43,19 +43,24 @@
   .nav-cta .btn { padding: 10px 20px; font-size: 0.85rem; }
   @media (max-width: 900px) { nav.links { display: none; } }
 
+  /* banner strip (logo + selo em destaque) */
+  .banner-strip { background: #fff; border-bottom: 1px solid #eee; padding: 40px 0; text-align: center; }
+  .banner-strip img.wordmark { height: 60px; margin: 0 auto 22px; }
+  .banner-strip .selo-row { display: flex; align-items: center; justify-content: center; gap: 18px; flex-wrap: wrap; }
+  .banner-strip .selo-row img.selo { width: 108px; height: 108px; border-radius: 50%; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+  .banner-strip .selo-row .info { text-align: left; }
+  .banner-strip .selo-row strong { display: block; font-size: 1.2rem; }
+  .banner-strip .selo-row span { color: var(--texto-claro); font-size: 0.92rem; }
+
   /* hero */
-  .hero { background: linear-gradient(135deg, var(--escuro) 0%, var(--escuro2) 100%); color: #fff; padding: 70px 0; }
-  .hero-inner { max-width: 1180px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; }
+  .hero { background: linear-gradient(135deg, var(--escuro) 0%, var(--escuro2) 100%); color: #fff; padding: 64px 0; }
+  .hero-inner { max-width: 780px; margin: 0 auto; padding: 0 24px; text-align: center; }
   .hero-kicker { color: var(--laranja); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.85rem; margin-bottom: 14px; }
-  .hero h1 { font-size: 2.6rem; line-height: 1.15; margin: 0 0 18px; font-weight: 800; }
+  .hero h1 { font-size: 2.5rem; line-height: 1.15; margin: 0 0 18px; font-weight: 800; }
   .hero h1 span { color: var(--laranja); }
-  .hero p.sub { font-size: 1.05rem; color: #e8d9d3; margin: 0 0 28px; max-width: 480px; }
-  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-  .hero-badge { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); border-radius: 14px; padding: 28px; text-align: center; }
-  .hero-badge img { width: 110px; height: 110px; border-radius: 50%; margin: 0 auto 14px; background: #fff; padding: 6px; object-fit: cover; object-position: center 45%; }
-  .hero-badge strong { display: block; font-size: 1.1rem; margin-bottom: 4px; }
-  .hero-badge span { color: #cbb8b2; font-size: 0.88rem; }
-  @media (max-width: 860px) { .hero-inner { grid-template-columns: 1fr; } .hero h1 { font-size: 2rem; } }
+  .hero p.sub { font-size: 1.05rem; color: #d8d8d8; margin: 0 auto 28px; max-width: 520px; }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+  @media (max-width: 860px) { .hero h1 { font-size: 2rem; } }
 
   /* cursos grid */
   .cursos-head { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; margin-bottom: 32px; }
@@ -73,13 +78,13 @@
   /* passo a passo (dark band) */
   .passos { background: var(--escuro); color: #fff; }
   .passos h2, .passos .lead { color: #fff; }
-  .passos .lead { color: #d9c8c3; }
+  .passos .lead { color: #cfcfcf; }
   .grid-passos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px; }
   @media (max-width: 760px) { .grid-passos { grid-template-columns: 1fr; } }
   .passo-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 20px; }
   .passo-num { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; background: var(--laranja); color: var(--escuro); font-weight: 800; font-size: 0.9rem; margin-bottom: 12px; }
   .passo-card strong { display: block; margin-bottom: 6px; }
-  .passo-card p { margin: 0; color: #cbb8b2; font-size: 0.88rem; }
+  .passo-card p { margin: 0; color: #cfcfcf; font-size: 0.88rem; }
 
   /* como entrar */
   .grid-entrar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
@@ -98,7 +103,7 @@
   .dif-item strong { display: block; margin-bottom: 3px; }
   .dif-item p { margin: 0; color: var(--texto-claro); font-size: 0.9rem; }
   .diferenciais-art { background: linear-gradient(160deg, var(--vermelho), var(--escuro)); border-radius: 16px; min-height: 340px; display: flex; align-items: center; justify-content: center; padding: 30px; }
-  .diferenciais-art img { width: 180px; height: 180px; object-fit: contain; }
+  .diferenciais-art img { width: 220px; height: 220px; object-fit: contain; border-radius: 50%; background: #fff; padding: 14px; }
 
   /* modalidades */
   .bg-creme { background: var(--creme); }
@@ -116,11 +121,11 @@
   @media (max-width: 760px) { .grid-depoimentos { grid-template-columns: 1fr; } }
   .depoimento-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 26px; }
   .depoimento-card .aspas { color: var(--laranja); font-size: 2rem; line-height: 1; margin-bottom: 10px; }
-  .depoimento-card p.texto { color: #e8d9d3; font-size: 0.92rem; margin: 0 0 18px; }
+  .depoimento-card p.texto { color: #d8d8d8; font-size: 0.92rem; margin: 0 0 18px; }
   .depoimento-autor { display: flex; align-items: center; gap: 12px; }
   .depoimento-avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--laranja); color: var(--escuro); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1rem; }
   .depoimento-autor strong { display: block; font-size: 0.92rem; }
-  .depoimento-autor span { color: #cbb8b2; font-size: 0.8rem; }
+  .depoimento-autor span { color: #b5b5b5; font-size: 0.8rem; }
 
   /* faq */
   .faq-item { border-bottom: 1px solid #eee; }
@@ -134,10 +139,10 @@
   .cta-final { background: var(--vermelho); color: #fff; padding: 26px 0; }
   .cta-final .wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
   .cta-final p { margin: 0; font-weight: 600; }
-  footer.site { background: var(--escuro); color: #cbb8b2; padding: 40px 0 26px; font-size: 0.88rem; }
+  footer.site { background: var(--escuro); color: #b5b5b5; padding: 40px 0 26px; font-size: 0.88rem; }
   footer.site .foot-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 24px; margin-bottom: 26px; }
-  footer.site .foot-brand img { height: 34px; margin-bottom: 10px; }
-  footer.site a { color: #e8d9d3; }
+  footer.site .foot-brand img { height: 34px; margin-bottom: 10px; background: #fff; padding: 6px 10px; border-radius: 6px; }
+  footer.site a { color: #d8d8d8; }
   footer.site .social { display: flex; gap: 12px; margin-top: 12px; }
   footer.site .social a { width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; }
   footer.site .foot-bottom { border-top: 1px solid rgba(255,255,255,0.12); padding-top: 18px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-size: 0.8rem; }
@@ -162,21 +167,27 @@
   </div>
 </header>
 
-<section class="hero" id="topo">
-  <div class="hero-inner">
-    <div>
-      <div class="hero-kicker">Vestibular Anhanguera</div>
-      <h1>Comece sua faculdade <span>sem nota de corte</span> e no seu ritmo.</h1>
-      <p class="sub">Vestibular online simples, cursos de graduação nas modalidades EAD e semipresencial, com apoio presencial nas unidades Barão Geraldo e Jardim Nova Europa em Campinas.</p>
-      <div class="hero-actions">
-        <a class="btn btn-accent" href="https://wa.me/5519997836242?text=Ol%C3%A1%2C%20quero%20fazer%20o%20vestibular%20e%20come%C3%A7ar%20minha%20faculdade" target="_blank" rel="noopener">Quero me inscrever</a>
-        <a class="btn" style="background:rgba(255,255,255,0.12)" href="#cursos">Ver cursos</a>
+<div class="banner-strip">
+  <div class="wrap">
+    <img class="wordmark" src="img/logo-anhanguera.png" alt="Anhanguera">
+    <div class="selo-row">
+      <img class="selo" src="img/selo-polo.png" alt="Selo Polo Anhanguera Campinas XIII e IX">
+      <div class="info">
+        <strong>Polo Anhanguera Campinas</strong>
+        <span>Unidades Barão Geraldo &amp; Jardim Nova Europa</span>
       </div>
     </div>
-    <div class="hero-badge">
-      <img src="img/selo-polo.png" alt="Selo Polo Anhanguera Campinas">
-      <strong>Polo Anhanguera Campinas</strong>
-      <span>Barão Geraldo &amp; Jardim Nova Europa</span>
+  </div>
+</div>
+
+<section class="hero" id="topo">
+  <div class="hero-inner">
+    <div class="hero-kicker">Vestibular Anhanguera</div>
+    <h1>Comece sua faculdade <span>sem nota de corte</span> e no seu ritmo.</h1>
+    <p class="sub">Vestibular online simples, cursos de graduação nas modalidades EAD e semipresencial, com apoio presencial nas unidades Barão Geraldo e Jardim Nova Europa em Campinas.</p>
+    <div class="hero-actions">
+      <a class="btn btn-accent" href="https://wa.me/5519997836242?text=Ol%C3%A1%2C%20quero%20fazer%20o%20vestibular%20e%20come%C3%A7ar%20minha%20faculdade" target="_blank" rel="noopener">Quero me inscrever</a>
+      <a class="btn" style="background:rgba(255,255,255,0.12)" href="#cursos">Ver cursos</a>
     </div>
   </div>
 </section>
