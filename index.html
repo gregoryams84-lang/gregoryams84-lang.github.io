@@ -5,32 +5,44 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Polo Anhanguera Campinas</title>
 <meta name="description" content="Polo Anhanguera Campinas — unidades Barão Geraldo e Jardim Nova Europa. Cursos de graduação e pós-graduação nas modalidades EAD e semipresencial.">
+<link rel="icon" href="img/selo-polo.png">
 <style>
-  body { font-family: -apple-system, "Segoe UI", Arial, sans-serif; margin: 0; color: #1a1a1a; line-height: 1.6; }
-  header { background: #b3181e; color: #fff; padding: 40px 20px; text-align: center; }
-  header h1 { margin: 0 0 8px; font-size: 1.9rem; }
-  header p { margin: 0; opacity: 0.95; }
-  main { max-width: 780px; margin: 0 auto; padding: 30px 20px; }
-  section { margin-bottom: 40px; }
-  h2 { border-bottom: 2px solid #b3181e; padding-bottom: 6px; }
-  .unidades { display: flex; gap: 20px; flex-wrap: wrap; }
-  .unidade { flex: 1; min-width: 220px; background: #f7f7f7; border-radius: 8px; padding: 16px 20px; }
-  .areas { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
-  .area { background: #f7f7f7; border-radius: 8px; padding: 14px 16px; }
-  .area h3 { margin: 0 0 6px; font-size: 1rem; color: #b3181e; }
-  .area p { margin: 0; font-size: 0.92rem; }
-  footer { background: #1a1a1a; color: #ccc; text-align: center; padding: 24px 20px; font-size: 0.9rem; }
-  footer a { color: #fff; }
-  .contato-item { margin: 4px 0; }
-  .botao-whatsapp { display: inline-flex; align-items: center; gap: 8px; background: #25D366; color: #fff; padding: 12px 22px; border-radius: 30px; text-decoration: none; font-weight: 600; margin-top: 18px; }
+  :root { --vermelho: #d92b1c; --escuro: #16233a; --cinza: #6b7280; }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, "Segoe UI", Arial, sans-serif; margin: 0; color: var(--escuro); line-height: 1.6; background: #fff; }
+  a { color: var(--vermelho); }
+  header { padding: 44px 20px 36px; text-align: center; border-bottom: 1px solid #eee; }
+  header img.logo { height: 40px; margin-bottom: 18px; }
+  header h1 { display: none; }
+  header .subtitulo { margin: 0; color: var(--cinza); font-size: 1.05rem; }
+  main { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+  section { margin-bottom: 48px; }
+  h2 { font-size: 1.3rem; color: var(--escuro); margin-bottom: 18px; position: relative; padding-bottom: 10px; }
+  h2::after { content: ""; position: absolute; left: 0; bottom: 0; width: 40px; height: 3px; background: var(--vermelho); border-radius: 2px; }
+  section#sobre p { color: #333; }
+  .unidades { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 18px; }
+  .unidade { flex: 1; min-width: 220px; background: #fafafa; border: 1px solid #eee; border-radius: 10px; padding: 18px 20px; }
+  .unidade strong { display: block; margin-bottom: 4px; color: var(--escuro); }
+  .unidade p { margin: 0; color: var(--cinza); font-size: 0.92rem; }
+  .areas { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .area { background: #fff; border: 1px solid #eee; border-radius: 10px; padding: 18px 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: box-shadow 0.15s ease; }
+  .area:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.08); }
+  .area h3 { margin: 0 0 8px; font-size: 1rem; color: var(--vermelho); }
+  .area p { margin: 0; font-size: 0.9rem; color: #444; }
+  .contato-item { margin: 6px 0; }
+  .botao-whatsapp { display: inline-flex; align-items: center; gap: 8px; background: #25D366; color: #fff; padding: 13px 26px; border-radius: 30px; text-decoration: none; font-weight: 600; margin-top: 20px; box-shadow: 0 2px 8px rgba(37,211,102,0.3); }
   .botao-whatsapp:hover { background: #1ebe5a; }
+  footer { background: var(--escuro); color: #cbd3e0; text-align: center; padding: 28px 20px; font-size: 0.88rem; }
+  footer a { color: #fff; }
+  footer img.selo { height: 60px; opacity: 0.9; margin-bottom: 14px; }
 </style>
 </head>
 <body>
 
 <header>
+  <img class="logo" src="img/logo-anhanguera.png" alt="Anhanguera">
   <h1>Polo Anhanguera Campinas</h1>
-  <p>Unidades Barão Geraldo e Jardim Nova Europa — Campinas, SP</p>
+  <p class="subtitulo">Unidades Barão Geraldo e Jardim Nova Europa — Campinas, SP</p>
   <a class="botao-whatsapp" href="https://wa.me/5519997836242?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20cursos" target="_blank" rel="noopener">💬 Fale com a gente no WhatsApp</a>
 </header>
 
@@ -98,6 +110,7 @@
 </main>
 
 <footer>
+  <img class="selo" src="img/selo-polo.png" alt="Selo Polo Anhanguera Campinas XIII e IX">
   <p>Polo Anhanguera Campinas — Barão Geraldo e Jardim Nova Europa, Campinas/SP</p>
   <p><a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Serviço</a></p>
   <p style="margin-top:16px;font-size:0.8rem;opacity:0.7;">
