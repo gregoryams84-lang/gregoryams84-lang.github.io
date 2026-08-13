@@ -62,19 +62,19 @@
   .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
   @media (max-width: 860px) { .hero h1 { font-size: 2rem; } }
 
-  /* cursos grid */
+  /* cursos por area */
   .cursos-head { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; margin-bottom: 32px; }
-  .grid-cursos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-  @media (max-width: 900px) { .grid-cursos { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 560px) { .grid-cursos { grid-template-columns: 1fr; } }
+  .grid-cursos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  @media (max-width: 980px) { .grid-cursos { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 620px) { .grid-cursos { grid-template-columns: 1fr; } }
   .card-curso { border: 1px solid #eee; border-radius: 12px; overflow: hidden; background: #fff; transition: box-shadow 0.15s ease, transform 0.15s ease; }
   .card-curso:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); transform: translateY(-3px); }
   .card-curso .top { height: 140px; overflow: hidden; }
   .card-curso .top img { width: 100%; height: 100%; object-fit: cover; }
-  .card-curso .body { padding: 16px 18px 20px; }
+  .card-curso .body { padding: 18px 20px 22px; }
   .card-curso .badge { display: inline-block; background: var(--creme); color: var(--vermelho-forte); font-size: 0.72rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
-  .card-curso h3 { font-size: 1rem; margin: 0 0 4px; }
-  .card-curso .modalidade { color: var(--texto-claro); font-size: 0.85rem; }
+  .card-curso h3 { font-size: 1.08rem; margin: 0 0 8px; }
+  .card-curso .lista-cursos { color: var(--texto-claro); font-size: 0.87rem; margin: 0; line-height: 1.55; }
 
   /* passo a passo (dark band) */
   .passos { background: var(--escuro); color: #fff; }
@@ -155,7 +155,8 @@
   <div class="nav-inner">
     <a class="nav-logo" href="#topo"><img src="img/logo-anhanguera.png" alt="Anhanguera"></a>
     <nav class="links">
-      <a href="#cursos">Cursos</a>
+      <a href="#cursos">Graduação</a>
+      <a href="#pos-graduacao">Pós-graduação</a>
       <a href="#como-entrar">Como ingressar</a>
       <a href="#modalidades">Modalidades</a>
       <a href="#diferenciais">Diferenciais</a>
@@ -198,19 +199,47 @@
     <div class="cursos-head">
       <div>
         <div class="kicker">Graduação</div>
-        <h2>Conheça alguns dos nossos cursos</h2>
+        <h2>Mais de 30 cursos, organizados por área</h2>
       </div>
       <a class="btn" style="background:var(--cinza-claro); color:var(--texto);" href="https://wa.me/5519997836242?text=Quero%20ver%20o%20cat%C3%A1logo%20completo%20de%20cursos" target="_blank" rel="noopener">Ver catálogo completo</a>
     </div>
     <div class="grid-cursos">
-      <div class="card-curso"><div class="top"><img src="img/cursos/administracao.jpg" alt="Administração" loading="lazy"></div><div class="body"><span class="badge">Graduação</span><h3>Administração</h3><p class="modalidade">EAD e Semipresencial</p></div></div>
-      <div class="card-curso"><div class="top"><img src="img/cursos/ads.jpg" alt="Análise e Desenvolvimento de Sistemas" loading="lazy"></div><div class="body"><span class="badge">Graduação</span><h3>Análise e Desenvolvimento de Sistemas</h3><p class="modalidade">EAD e Semipresencial</p></div></div>
-      <div class="card-curso"><div class="top"><img src="img/cursos/pedagogia.jpg" alt="Pedagogia" loading="lazy"></div><div class="body"><span class="badge">Graduação</span><h3>Pedagogia</h3><p class="modalidade">EAD e Semipresencial</p></div></div>
-      <div class="card-curso"><div class="top"><img src="img/cursos/enfermagem.jpg" alt="Enfermagem" loading="lazy"></div><div class="body"><span class="badge">Graduação</span><h3>Enfermagem</h3><p class="modalidade">Semipresencial</p></div></div>
-      <div class="card-curso"><div class="top"><img src="img/cursos/logistica.jpg" alt="Logística" loading="lazy"></div><div class="body"><span class="badge">Graduação</span><h3>Logística</h3><p class="modalidade">EAD e Semipresencial</p></div></div>
-      <div class="card-curso"><div class="top"><img src="img/cursos/contabeis.jpg" alt="Ciências Contábeis" loading="lazy"></div><div class="body"><span class="badge">Graduação</span><h3>Ciências Contábeis</h3><p class="modalidade">EAD e Semipresencial</p></div></div>
-      <div class="card-curso"><div class="top"><img src="img/cursos/gestao-comercial.jpg" alt="Gestão Comercial" loading="lazy"></div><div class="body"><span class="badge">Graduação</span><h3>Gestão Comercial</h3><p class="modalidade">EAD e Semipresencial</p></div></div>
-      <div class="card-curso"><div class="top"><img src="img/cursos/educacao-fisica.jpg" alt="Educação Física" loading="lazy"></div><div class="body"><span class="badge">Graduação</span><h3>Educação Física</h3><p class="modalidade">Semipresencial</p></div></div>
+      <div class="card-curso">
+        <div class="top"><img src="img/cursos/administracao.jpg" alt="Administração e Negócios" loading="lazy"></div>
+        <div class="body"><span class="badge">Graduação</span><h3>Administração e Negócios</h3><p class="lista-cursos">Administração, Ciências Contábeis, Gestão Financeira, Marketing, Gestão Comercial, Recursos Humanos, Processos Gerenciais</p></div>
+      </div>
+      <div class="card-curso">
+        <div class="top"><img src="img/cursos/ads.jpg" alt="Tecnologia" loading="lazy"></div>
+        <div class="body"><span class="badge">Graduação</span><h3>Tecnologia</h3><p class="lista-cursos">Análise e Desenvolvimento de Sistemas, Sistemas de Informação, Engenharia de Software, Segurança da Informação, Inteligência Artificial</p></div>
+      </div>
+      <div class="card-curso">
+        <div class="top"><img src="img/cursos/pedagogia.jpg" alt="Educação e Saúde" loading="lazy"></div>
+        <div class="body"><span class="badge">Graduação</span><h3>Educação e Saúde</h3><p class="lista-cursos">Pedagogia, Educação Física, Nutrição, Enfermagem, Psicologia</p></div>
+      </div>
+      <div class="card-curso">
+        <div class="top"><img src="img/cursos/logistica.jpg" alt="Engenharia e Produção" loading="lazy"></div>
+        <div class="body"><span class="badge">Graduação</span><h3>Engenharia e Produção</h3><p class="lista-cursos">Logística, Engenharia de Produção, Gestão da Produção Industrial, Segurança do Trabalho, Gestão Ambiental</p></div>
+      </div>
+      <div class="card-curso">
+        <div class="top"><img src="img/cursos/gestao-publica.jpg" alt="Gestão e Negócios Públicos" loading="lazy"></div>
+        <div class="body"><span class="badge">Graduação</span><h3>Gestão e Negócios Públicos</h3><p class="lista-cursos">Ciências Econômicas, Gestão Pública, Comércio Exterior, Turismo</p></div>
+      </div>
+      <div class="card-curso">
+        <div class="top"><img src="img/cursos/design-estetica.jpg" alt="Design e Estética" loading="lazy"></div>
+        <div class="body"><span class="badge">Graduação</span><h3>Design e Estética</h3><p class="lista-cursos">Design Gráfico, Arquitetura e Urbanismo, Estética e Cosmética, Serviço Social</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pos-graduacao" class="bg-creme">
+  <div class="wrap">
+    <div class="kicker">Pós-graduação</div>
+    <h2>Continue se especializando</h2>
+    <p class="lead">Também oferecemos cursos de pós-graduação nas modalidades EAD e semipresencial, pra você aprofundar sua formação depois da graduação.</p>
+    <div style="background:#fff; border-radius:12px; padding:26px 28px; max-width:640px;">
+      <p style="margin:0 0 16px; color:var(--texto-claro);">A lista completa de cursos de pós-graduação disponíveis está sendo atualizada aqui no site. Enquanto isso, fale com a gente no WhatsApp e te enviamos as opções certinhas pra sua área.</p>
+      <a class="btn" href="https://wa.me/5519997836242?text=Quero%20saber%20quais%20cursos%20de%20p%C3%B3s-gradua%C3%A7%C3%A3o%20voc%C3%AAs%20oferecem" target="_blank" rel="noopener">Ver cursos de pós-graduação</a>
     </div>
   </div>
 </section>
