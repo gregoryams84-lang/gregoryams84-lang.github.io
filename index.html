@@ -7,6 +7,8 @@
 <meta name="description" content="Polo Anhanguera Campinas — unidades Barão Geraldo e Jardim Nova Europa. Cursos de graduação nas modalidades EAD e semipresencial, vestibular online sem nota de corte.">
 <link rel="icon" href="img/selo-polo.png">
 <style>
+  [hidden] { display: none !important; }
+
   :root {
     --vermelho: #E8650A;
     --vermelho-forte: #C9560A;
@@ -31,6 +33,21 @@
   h2 { font-size: 1.9rem; margin: 0 0 8px; color: var(--texto); }
   .kicker { color: var(--vermelho); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
   .lead { color: var(--texto-claro); max-width: 640px; margin: 0 0 32px; }
+  .manifesto { font-size: clamp(28px, 5vw, 52px); font-weight: 800; line-height: 1.14; color: var(--texto); margin: 0 0 10px; letter-spacing: -0.01em; text-wrap: balance; max-width: 780px; }
+
+  /* scroll reveal */
+  .reveal { opacity: 0; transform: translateY(24px); }
+  .reveal.in-view { opacity: 1; transform: translateY(0); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; }
+  }
+
+  /* camera zoom-out on real photos */
+  .zoom-img { transform: scale(1.7); transition: transform 2.4s cubic-bezier(0.16,1,0.3,1); }
+  .zoom-img.in-view { transform: scale(1.04); }
+  @media (prefers-reduced-motion: reduce) {
+    .zoom-img { transform: none !important; transition: none !important; }
+  }
 
   /* header */
   header.site { position: sticky; top: 0; z-index: 50; background: #fff; box-shadow: 0 1px 8px rgba(0,0,0,0.06); }
@@ -83,7 +100,7 @@
   .grid-passos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px; }
   @media (max-width: 760px) { .grid-passos { grid-template-columns: 1fr; } }
   .passo-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 20px; }
-  .passo-num { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; background: var(--laranja); color: var(--escuro); font-weight: 800; font-size: 0.9rem; margin-bottom: 12px; }
+  .passo-num { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; background: var(--laranja); color: var(--escuro); font-weight: 800; font-size: 0.9rem; margin-bottom: 12px; will-change: transform; }
   .passo-card strong { display: block; margin-bottom: 6px; }
   .passo-card p { margin: 0; color: #cfcfcf; font-size: 0.88rem; }
 
@@ -100,11 +117,21 @@
   .diferenciais-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
   @media (max-width: 860px) { .diferenciais-wrap { grid-template-columns: 1fr; } }
   .dif-item { display: flex; gap: 14px; margin-bottom: 22px; }
-  .dif-icone { flex-shrink: 0; width: 44px; height: 44px; border-radius: 10px; background: var(--creme); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+  .dif-icone { flex-shrink: 0; width: 44px; height: 44px; border-radius: 10px; background: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+  .dif-icone svg { width: 26px; height: 26px; overflow: visible; }
+  .dif-icone .ring { stroke: var(--vermelho); fill: none; stroke-width: 1.4; opacity: 0.32; }
+  .icon-check path { fill: none; stroke: var(--vermelho); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+  .icon-clock .hand { transform-origin: 13px 13px; transform: rotate(0deg); transition: transform 1.1s cubic-bezier(0.34,1.3,0.64,1); }
+  .dif-icone.in-view .icon-clock .hand { transform: rotate(305deg); }
+  .icon-pin .pin-body { transform-origin: 13px 20px; transform: translateY(-10px) scale(0.6); opacity: 0; transition: transform 0.75s cubic-bezier(0.34,1.4,0.64,1), opacity 0.5s ease; }
+  .dif-icone.in-view .icon-pin .pin-body { transform: translateY(0) scale(1); opacity: 1; }
+  .icon-arrow .arrow-body { transform: translate(-6px,6px); opacity: 0; transition: transform 0.85s cubic-bezier(0.34,1.4,0.64,1), opacity 0.5s ease; }
+  .dif-icone.in-view .icon-arrow .arrow-body { transform: translate(0,0); opacity: 1; }
   .dif-item strong { display: block; margin-bottom: 3px; }
   .dif-item p { margin: 0; color: var(--texto-claro); font-size: 0.9rem; }
-  .diferenciais-art { background: linear-gradient(160deg, var(--vermelho), var(--escuro)); border-radius: 16px; min-height: 340px; display: flex; align-items: center; justify-content: center; padding: 30px; }
+  .diferenciais-art { background: linear-gradient(160deg, var(--vermelho), var(--escuro)); border-radius: 16px; min-height: 340px; display: flex; align-items: center; justify-content: center; padding: 30px; overflow: hidden; }
   .diferenciais-art img { width: 220px; height: 220px; object-fit: contain; border-radius: 50%; background: #fff; padding: 14px; }
+  .diferenciais-art img.zoom-img.in-view { transform: scale(1); }
 
   /* modalidades */
   .bg-creme { background: var(--creme); }
@@ -142,7 +169,10 @@
   /* cta final + footer */
   .cta-final { background: var(--vermelho); color: #fff; padding: 26px 0; }
   .cta-final .wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-  .cta-final p { margin: 0; font-weight: 600; }
+  .cta-final p.sr-text { margin: 0; font-weight: 600; font-size: 1.05rem; }
+  .dot-sign-wrap { position: relative; min-height: 1px; }
+  .dot-sign-wrap canvas { display: block; }
+  .visually-hidden { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
   footer.site { background: var(--escuro); color: #b5b5b5; padding: 40px 0 26px; font-size: 0.88rem; }
   footer.site .foot-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 24px; margin-bottom: 26px; }
   footer.site .foot-brand img { height: 34px; margin-bottom: 10px; background: #fff; padding: 6px 10px; border-radius: 6px; }
@@ -150,6 +180,11 @@
   footer.site .social { display: flex; gap: 12px; margin-top: 12px; }
   footer.site .social a { width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; }
   footer.site .foot-bottom { border-top: 1px solid rgba(255,255,255,0.12); padding-top: 18px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-size: 0.8rem; }
+
+  /* custom cursor (desktop only, JS-gated) */
+  .custom-cursor { position: fixed; top: 0; left: 0; width: 22px; height: 22px; border: 1.5px solid var(--vermelho); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.18s ease, height 0.18s ease, background-color 0.18s ease; }
+  .custom-cursor.hover { width: 42px; height: 42px; background: rgba(232,101,10,0.14); }
+  body.has-custom-cursor, body.has-custom-cursor a, body.has-custom-cursor button, body.has-custom-cursor summary { cursor: none; }
 </style>
 </head>
 <body>
@@ -208,27 +243,27 @@
     </div>
     <div class="grid-cursos">
       <div class="card-curso">
-        <div class="top"><img src="img/cursos/administracao.jpg" alt="Administração e Negócios" loading="lazy"></div>
+        <div class="top"><img src="img/cursos/administracao.webp" alt="Administração e Negócios" loading="lazy"></div>
         <div class="body"><span class="badge">Graduação</span><h3>Administração e Negócios</h3><p class="lista-cursos">Administração, Ciências Contábeis, Gestão Financeira, Marketing, Gestão Comercial, Recursos Humanos, Processos Gerenciais</p></div>
       </div>
       <div class="card-curso">
-        <div class="top"><img src="img/cursos/ads.jpg" alt="Tecnologia" loading="lazy"></div>
+        <div class="top"><img src="img/cursos/ads.webp" alt="Tecnologia" loading="lazy"></div>
         <div class="body"><span class="badge">Graduação</span><h3>Tecnologia</h3><p class="lista-cursos">Análise e Desenvolvimento de Sistemas, Sistemas de Informação, Engenharia de Software, Segurança da Informação, Inteligência Artificial</p></div>
       </div>
       <div class="card-curso">
-        <div class="top"><img src="img/cursos/pedagogia.jpg" alt="Educação e Saúde" loading="lazy"></div>
+        <div class="top"><img src="img/cursos/pedagogia.webp" alt="Educação e Saúde" loading="lazy"></div>
         <div class="body"><span class="badge">Graduação</span><h3>Educação e Saúde</h3><p class="lista-cursos">Pedagogia, Educação Física, Nutrição, Enfermagem, Psicologia</p></div>
       </div>
       <div class="card-curso">
-        <div class="top"><img src="img/cursos/logistica.jpg" alt="Engenharia e Produção" loading="lazy"></div>
+        <div class="top"><img src="img/cursos/logistica.webp" alt="Engenharia e Produção" loading="lazy"></div>
         <div class="body"><span class="badge">Graduação</span><h3>Engenharia e Produção</h3><p class="lista-cursos">Logística, Engenharia de Produção, Gestão da Produção Industrial, Segurança do Trabalho, Gestão Ambiental</p></div>
       </div>
       <div class="card-curso">
-        <div class="top"><img src="img/cursos/gestao-publica.jpg" alt="Gestão e Negócios Públicos" loading="lazy"></div>
+        <div class="top"><img src="img/cursos/gestao-publica.webp" alt="Gestão e Negócios Públicos" loading="lazy"></div>
         <div class="body"><span class="badge">Graduação</span><h3>Gestão e Negócios Públicos</h3><p class="lista-cursos">Ciências Econômicas, Gestão Pública, Comércio Exterior, Turismo</p></div>
       </div>
       <div class="card-curso">
-        <div class="top"><img src="img/cursos/design-estetica.jpg" alt="Design e Estética" loading="lazy"></div>
+        <div class="top"><img src="img/cursos/design-estetica.webp" alt="Design e Estética" loading="lazy"></div>
         <div class="body"><span class="badge">Graduação</span><h3>Design e Estética</h3><p class="lista-cursos">Design Gráfico, Arquitetura e Urbanismo, Estética e Cosmética, Serviço Social</p></div>
       </div>
     </div>
@@ -285,7 +320,8 @@
   <div class="wrap">
     <div class="kicker">Formas de ingresso</div>
     <h2>Como entrar no Polo Anhanguera Campinas?</h2>
-    <p class="lead">Você não precisa se encaixar em um único caminho — veja qual forma de ingresso combina mais com sua situação.</p>
+    <p class="manifesto">Você não precisa se encaixar em um único caminho.</p>
+    <p class="lead">Veja qual forma de ingresso combina mais com sua situação.</p>
     <div class="grid-entrar">
       <div class="entrar-card"><div class="icone">📝</div><h3>Vestibular Online</h3><p>Inscreva-se e faça o vestibular direto pelo celular ou computador, sem nota de corte.</p><a class="btn" href="https://wa.me/5519997836242?text=Quero%20saber%20sobre%20o%20Vestibular%20Online" target="_blank" rel="noopener">Saiba mais</a></div>
       <div class="entrar-card"><div class="icone">🎓</div><h3>Nota do Enem</h3><p>Use sua nota do Enem dos últimos anos como forma de ingresso na faculdade.</p><a class="btn" href="https://wa.me/5519997836242?text=Quero%20saber%20sobre%20ingresso%20com%20nota%20do%20Enem" target="_blank" rel="noopener">Saiba mais</a></div>
@@ -303,14 +339,57 @@
       <div>
         <div class="kicker">Por que estudar aqui</div>
         <h2>Conheça os diferenciais do Polo Anhanguera Campinas</h2>
-        <div class="dif-item"><div class="dif-icone">✅</div><div><strong>Ensino reconhecido</strong><p>Cursos de graduação com reconhecimento do MEC, seguindo as diretrizes do ensino superior brasileiro.</p></div></div>
-        <div class="dif-item"><div class="dif-icone">⏱️</div><div><strong>Flexibilidade real</strong><p>Modalidades EAD e semipresencial pensadas pra quem trabalha, tem família e precisa estudar no próprio ritmo.</p></div></div>
-        <div class="dif-item"><div class="dif-icone">📍</div><div><strong>Apoio presencial nas duas unidades</strong><p>Barão Geraldo e Jardim Nova Europa, com estrutura pra provas, atividades práticas e atendimento.</p></div></div>
-        <div class="dif-item"><div class="dif-icone">🚀</div><div><strong>Ingresso facilitado</strong><p>Vestibular online, simples e sem nota de corte — começar é mais fácil do que parece.</p></div></div>
+
+        <div class="dif-item reveal">
+          <div class="dif-icone">
+            <svg id="svgCheck" viewBox="0 0 26 26" class="icon-check">
+              <circle class="ring" cx="13" cy="13" r="11"/>
+              <path d="M7 13.5 L11 17.5 L19 8.5"/>
+            </svg>
+          </div>
+          <div><strong>Ensino reconhecido</strong><p>Cursos de graduação com reconhecimento do MEC, seguindo as diretrizes do ensino superior brasileiro.</p></div>
+        </div>
+
+        <div class="dif-item reveal">
+          <div class="dif-icone">
+            <svg viewBox="0 0 26 26" class="icon-clock">
+              <circle class="ring" cx="13" cy="13" r="11"/>
+              <line x1="13" y1="13" x2="13" y2="6" class="hand" stroke="var(--vermelho)" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="13" cy="13" r="1.4" fill="var(--vermelho)"/>
+            </svg>
+          </div>
+          <div><strong>Flexibilidade real</strong><p>Modalidades EAD e semipresencial pensadas pra quem trabalha, tem família e precisa estudar no próprio ritmo.</p></div>
+        </div>
+
+        <div class="dif-item reveal">
+          <div class="dif-icone">
+            <svg viewBox="0 0 26 26" class="icon-pin">
+              <circle class="ring" cx="13" cy="13" r="11"/>
+              <g class="pin-body">
+                <path d="M13 6c-2.8 0-5 2.1-5 4.9 0 3.6 5 9.1 5 9.1s5-5.5 5-9.1c0-2.8-2.2-4.9-5-4.9z" fill="var(--vermelho)"/>
+                <circle cx="13" cy="10.7" r="1.8" fill="#fff"/>
+              </g>
+            </svg>
+          </div>
+          <div><strong>Apoio presencial nas duas unidades</strong><p>Barão Geraldo e Jardim Nova Europa, com estrutura pra provas, atividades práticas e atendimento.</p></div>
+        </div>
+
+        <div class="dif-item reveal">
+          <div class="dif-icone">
+            <svg viewBox="0 0 26 26" class="icon-arrow">
+              <circle class="ring" cx="13" cy="13" r="11"/>
+              <g class="arrow-body">
+                <path d="M8 18 L18 8 M18 8 L12 8 M18 8 L18 14" fill="none" stroke="var(--vermelho)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+            </svg>
+          </div>
+          <div><strong>Ingresso facilitado</strong><p>Vestibular online, simples e sem nota de corte — começar é mais fácil do que parece.</p></div>
+        </div>
+
         <a class="btn" href="https://wa.me/5519997836242?text=Quero%20saber%20mais%20sobre%20o%20polo" target="_blank" rel="noopener">Quero saber mais</a>
       </div>
       <div class="diferenciais-art">
-        <img src="img/selo-polo.png" alt="Selo Polo Anhanguera Campinas">
+        <img src="img/selo-polo-lg.webp" alt="Selo Polo Anhanguera Campinas">
       </div>
     </div>
   </div>
@@ -384,7 +463,9 @@
 
 <div class="cta-final">
   <div class="wrap">
-    <p>Pronto pra começar sua faculdade?</p>
+    <div id="dotSignature" class="dot-sign-wrap">
+      <p class="sr-text">Pronto pra começar sua faculdade?</p>
+    </div>
     <a class="btn" style="background:#fff; color:var(--vermelho);" href="https://wa.me/5519997836242?text=Ol%C3%A1%2C%20quero%20come%C3%A7ar%20minha%20faculdade" target="_blank" rel="noopener">Fale conosco agora</a>
   </div>
 </div>
@@ -396,7 +477,7 @@
         <img src="img/logo-anhanguera.png" alt="Anhanguera">
         <p style="max-width:280px;">Polo Anhanguera Campinas — Barão Geraldo e Jardim Nova Europa, Campinas/SP.</p>
         <div class="social">
-          <a href="https://instagram.com/gregory.educacao" target="_blank" rel="noopener" aria-label="Instagram">📷</a>
+          <a href="https://instagram.com/poloanhanguera.campinas" target="_blank" rel="noopener" aria-label="Instagram">📷</a>
           <a href="https://wa.me/5519997836242" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
         </div>
       </div>
@@ -417,6 +498,171 @@
     </div>
   </div>
 </footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vivus/0.4.6/vivus.min.js"></script>
+<script>
+(function () {
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!reduceMotion) {
+    /* ---- Scroll reveal: cards + diferenciais items ---- */
+    var revealSelectors = '.card-curso, .passo-card, .entrar-card, .modalidade-card, .depoimento-card, .faq-item, .dif-item';
+    document.querySelectorAll(revealSelectors).forEach(function (el) { el.classList.add('reveal'); });
+
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.reveal').forEach(function (el) { revealObserver.observe(el); });
+
+    /* ---- Diferenciais icons: independent trigger on the icon box itself ---- */
+    var iconObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          if (window.Vivus && entry.target.querySelector('#svgCheck')) {
+            try { new Vivus('svgCheck', { type: 'oneByOne', duration: 65 }); } catch (e) {}
+          }
+          iconObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.6 });
+    document.querySelectorAll('.dif-icone').forEach(function (el) { iconObserver.observe(el); });
+
+    /* ---- Camera zoom-out on real photos ---- */
+    document.querySelectorAll('.card-curso .top img, .diferenciais-art img').forEach(function (el) { el.classList.add('zoom-img'); });
+    var zoomObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          zoomObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.25 });
+    document.querySelectorAll('.zoom-img').forEach(function (el) { zoomObserver.observe(el); });
+
+    /* ---- Subtle parallax depth on step numbers ---- */
+    if (window.gsap && window.ScrollTrigger) {
+      gsap.registerPlugin(ScrollTrigger);
+      document.querySelectorAll('.passo-num').forEach(function (el, i) {
+        gsap.to(el, {
+          y: (i % 2 === 0 ? -14 : 14),
+          ease: 'none',
+          scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true }
+        });
+      });
+    }
+  }
+
+  /* ---- Custom cursor (desktop, real mouse only) ---- */
+  if (!reduceMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    var cursor = document.createElement('div');
+    cursor.className = 'custom-cursor';
+    document.body.appendChild(cursor);
+    document.body.classList.add('has-custom-cursor');
+    var mx = window.innerWidth / 2, my = window.innerHeight / 2, cx = mx, cy = my;
+    window.addEventListener('mousemove', function (e) { mx = e.clientX; my = e.clientY; });
+    (function loop() {
+      cx += (mx - cx) * 0.18;
+      cy += (my - cy) * 0.18;
+      cursor.style.transform = 'translate(' + cx + 'px,' + cy + 'px) translate(-50%,-50%)';
+      requestAnimationFrame(loop);
+    })();
+    document.querySelectorAll('a, button, .btn, summary').forEach(function (el) {
+      el.addEventListener('mouseenter', function () { cursor.classList.add('hover'); });
+      el.addEventListener('mouseleave', function () { cursor.classList.remove('hover'); });
+    });
+  }
+
+  /* ---- Dot-matrix interactive signature (CTA final) ---- */
+  (function () {
+    if (reduceMotion) return;
+    var wrap = document.getElementById('dotSignature');
+    if (!wrap) return;
+    var textEl = wrap.querySelector('.sr-text');
+    var text = textEl.textContent.trim();
+    if (!window.CanvasRenderingContext2D) return;
+
+    var w = Math.round(wrap.getBoundingClientRect().width || 320);
+    wrap.style.width = w + 'px';
+
+    var fontSize = Math.max(20, Math.min(34, w / 13));
+    var canvas = document.createElement('canvas');
+    var dpr = window.devicePixelRatio || 1;
+    var cw = w, ch = Math.round(fontSize * 1.7);
+    canvas.width = cw * dpr;
+    canvas.height = ch * dpr;
+    canvas.style.width = cw + 'px';
+    canvas.style.height = ch + 'px';
+    wrap.appendChild(canvas);
+    var ctx = canvas.getContext('2d');
+    ctx.scale(dpr, dpr);
+
+    var off = document.createElement('canvas');
+    off.width = cw; off.height = ch;
+    var octx = off.getContext('2d');
+    octx.fillStyle = '#000';
+    octx.font = '800 ' + fontSize + 'px Roboto, Arial, sans-serif';
+    octx.textBaseline = 'middle';
+    var textW = octx.measureText(text).width;
+    octx.fillText(text, Math.max(0, (cw - textW) / 2), ch / 2);
+    var data = octx.getImageData(0, 0, cw, ch).data;
+
+    var step = 4;
+    var dots = [];
+    for (var y = 0; y < ch; y += step) {
+      for (var x = 0; x < cw; x += step) {
+        var idx = (y * cw + x) * 4 + 3;
+        if (data[idx] > 128) {
+          dots.push({ hx: x, hy: y, x: x, y: y, vx: 0, vy: 0 });
+        }
+      }
+    }
+    if (!dots.length) { canvas.remove(); return; }
+    textEl.classList.add('visually-hidden');
+
+    var pointer = { x: -9999, y: -9999 };
+    function setPointer(clientX, clientY) {
+      var r = canvas.getBoundingClientRect();
+      pointer.x = clientX - r.left;
+      pointer.y = clientY - r.top;
+    }
+    canvas.addEventListener('pointermove', function (e) { setPointer(e.clientX, e.clientY); });
+    canvas.addEventListener('pointerleave', function () { pointer.x = -9999; pointer.y = -9999; });
+    canvas.addEventListener('touchmove', function (e) {
+      if (e.touches && e.touches[0]) setPointer(e.touches[0].clientX, e.touches[0].clientY);
+    }, { passive: true });
+    canvas.addEventListener('touchend', function () { pointer.x = -9999; pointer.y = -9999; });
+
+    var dotColor = '#ffffff';
+    function tick() {
+      ctx.clearRect(0, 0, cw, ch);
+      ctx.fillStyle = dotColor;
+      for (var i = 0; i < dots.length; i++) {
+        var d = dots[i];
+        var dx = d.x - pointer.x, dy = d.y - pointer.y;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        var force = dist < 55 ? (55 - dist) / 55 : 0;
+        var ax = dist ? (dx / dist) * force * 16 : 0;
+        var ay = dist ? (dy / dist) * force * 16 : 0;
+        d.vx += ((d.hx + ax) - d.x) * 0.09;
+        d.vy += ((d.hy + ay) - d.y) * 0.09;
+        d.vx *= 0.80; d.vy *= 0.80;
+        d.x += d.vx; d.y += d.vy;
+        ctx.fillRect(d.x, d.y, 2.2, 2.2);
+      }
+      requestAnimationFrame(tick);
+    }
+    tick();
+  })();
+})();
+</script>
 
 </body>
 </html>
