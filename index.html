@@ -145,6 +145,54 @@
   .modalidade-card h3 { margin: 0 0 8px; }
   .modalidade-card p { color: var(--texto-claro); font-size: 0.88rem; margin: 0 0 20px; }
 
+  /* icone 3d - ritmo (barras extrudadas) */
+  .icon3d-pace { width: 68px; height: 52px; margin: 0 auto 16px; perspective: 320px; }
+  .icon3d-pace .bars-3d { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transform: rotateX(-16deg) rotateY(26deg); animation: pace-sway 4.5s ease-in-out infinite alternate; }
+  .icon3d-pace .bar3d { position: absolute; bottom: 0; width: 14px; height: 0; transform-style: preserve-3d; transition: height 0.9s cubic-bezier(0.16,1,0.3,1); }
+  .icon3d-pace .bar3d:nth-child(1) { left: 2px; transition-delay: 0.05s; }
+  .icon3d-pace .bar3d:nth-child(2) { left: 25px; transition-delay: 0.18s; }
+  .icon3d-pace .bar3d:nth-child(3) { left: 48px; transition-delay: 0.31s; }
+  .icon3d-pace .bar3d .f, .icon3d-pace .bar3d .t, .icon3d-pace .bar3d .r { position: absolute; width: 14px; }
+  .icon3d-pace .bar3d .f { height: 100%; top: 0; background: #e4dfd4; transform: translateZ(7px); }
+  .icon3d-pace .bar3d .r { height: 100%; top: 0; right: -14px; background: #cfc8b8; transform: rotateY(90deg) translateZ(7px); transform-origin: right; }
+  .icon3d-pace .bar3d .t { height: 14px; top: 0; background: #efe9dc; transform: rotateX(90deg) translateZ(7px); transform-origin: top; }
+  .icon3d-pace .bar3d.filled .f { background: var(--vermelho); }
+  .icon3d-pace .bar3d.filled .r { background: var(--vermelho-forte); }
+  .icon3d-pace .bar3d.filled .t { background: var(--laranja); }
+  .modalidade-card.in-view .bar3d:nth-child(1) { height: 18px; }
+  .modalidade-card.in-view .bar3d:nth-child(2) { height: 32px; }
+  .modalidade-card.in-view .bar3d:nth-child(3) { height: 46px; }
+  @keyframes pace-sway { from { transform: rotateX(-16deg) rotateY(20deg); } to { transform: rotateX(-16deg) rotateY(32deg); } }
+  @media (prefers-reduced-motion: reduce) {
+    .icon3d-pace .bars-3d { animation: none !important; transform: rotateX(-16deg) rotateY(26deg) !important; }
+    .icon3d-pace .bar3d { transition: none !important; }
+    .modalidade-card .bar3d:nth-child(1) { height: 18px !important; }
+    .modalidade-card .bar3d:nth-child(2) { height: 32px !important; }
+    .modalidade-card .bar3d:nth-child(3) { height: 46px !important; }
+  }
+
+  /* icone 3d - categorias (moeda com flip) */
+  .icon3d-coin { width: 58px; height: 58px; margin: 0 auto 14px; perspective: 320px; }
+  .icon3d-coin .coin-inner { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transform: rotateY(90deg) rotateX(0deg); opacity: 0; transition: transform 0.8s cubic-bezier(0.16,1,0.3,1), opacity 0.5s ease; animation: coin-sway 5s ease-in-out infinite alternate; animation-play-state: paused; }
+  .entrar-card.in-view .icon3d-coin .coin-inner { transform: rotateY(0deg) rotateX(8deg); opacity: 1; animation-play-state: running; }
+  .coin-back, .coin-face { position: absolute; inset: 0; border-radius: 50%; }
+  .coin-back { background: var(--vermelho); transform: translateZ(-5px); }
+  .coin-face { background: #fff; border: 2px solid var(--vermelho); display: flex; align-items: center; justify-content: center; transform: translateZ(5px); box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+  .coin-face svg { width: 24px; height: 24px; overflow: visible; }
+  .icon-book path { fill: none; stroke: var(--vermelho); stroke-width: 1.7; stroke-linejoin: round; }
+  .icon-star path { fill: none; stroke: var(--vermelho); stroke-width: 1.6; stroke-linejoin: round; }
+  .icon-sliders line { stroke: var(--vermelho); stroke-width: 1.8; stroke-linecap: round; }
+  .icon-sliders circle { fill: #fff; stroke: var(--vermelho); stroke-width: 1.8; }
+  @keyframes coin-sway { from { transform: rotateY(-8deg) rotateX(8deg); } to { transform: rotateY(8deg) rotateX(8deg); } }
+  .live-dot-wrap { position: relative; width: 16px; height: 16px; }
+  .live-dot-wrap .live-dot { position: absolute; inset: 4px; border-radius: 50%; background: var(--vermelho); }
+  .live-dot-wrap .live-ring { position: absolute; inset: 0; border-radius: 50%; border: 1.6px solid var(--vermelho); animation: live-pulse 1.6s ease-out infinite; }
+  @keyframes live-pulse { from { transform: scale(0.6); opacity: 0.9; } to { transform: scale(1.9); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .icon3d-coin .coin-inner { animation: none !important; transition: none !important; transform: rotateY(0deg) rotateX(0deg) !important; opacity: 1 !important; }
+    .live-dot-wrap .live-ring { animation: none !important; opacity: 0.5; }
+  }
+
   /* depoimentos */
   .depoimentos { background: var(--escuro); color: #fff; }
   .depoimentos h2 { color: #fff; }
@@ -173,7 +221,9 @@
   .dot-sign-wrap { position: relative; min-height: 1px; }
   .dot-sign-wrap canvas { display: block; }
   .visually-hidden { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-  footer.site { background: var(--escuro); color: #b5b5b5; padding: 40px 0 26px; font-size: 0.88rem; }
+  footer.site { background: var(--escuro); color: #b5b5b5; padding: 40px 0 26px; font-size: 0.88rem; position: relative; overflow: hidden; }
+  footer.site .foot-signature { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+  footer.site .wrap { position: relative; z-index: 1; }
   footer.site .foot-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 24px; margin-bottom: 26px; }
   footer.site .foot-brand img { height: 34px; margin-bottom: 10px; background: #fff; padding: 6px 10px; border-radius: 6px; }
   footer.site a { color: #d8d8d8; }
@@ -278,17 +328,17 @@
 
     <h3 style="font-size:1.15rem; margin:0 0 16px;">Escolha o ritmo: 3 durações, mesmo conteúdo</h3>
     <div class="grid-pos-modalidades">
-      <div class="modalidade-card"><div class="icone">🐢</div><h3>EAD</h3><p><strong>10 a 12 meses</strong><br>O ritmo padrão, mais tempo pra estudar com calma dentro do cronograma.</p></div>
-      <div class="modalidade-card"><div class="icone">🚶</div><h3>Intensivo</h3><p><strong>6 meses</strong><br>Mesmo conteúdo, concluído num prazo mais curto.</p></div>
-      <div class="modalidade-card"><div class="icone">🏃</div><h3>Superintensivo</h3><p><strong>4 meses</strong><br>A duração mínima possível, pra quem quer o certificado o quanto antes.</p></div>
+      <div class="modalidade-card"><div class="icon3d-pace"><div class="bars-3d"><div class="bar3d filled"><div class="f"></div><div class="r"></div><div class="t"></div></div><div class="bar3d"><div class="f"></div><div class="r"></div><div class="t"></div></div><div class="bar3d"><div class="f"></div><div class="r"></div><div class="t"></div></div></div></div><h3>EAD</h3><p><strong>10 a 12 meses</strong><br>O ritmo padrão, mais tempo pra estudar com calma dentro do cronograma.</p></div>
+      <div class="modalidade-card"><div class="icon3d-pace"><div class="bars-3d"><div class="bar3d filled"><div class="f"></div><div class="r"></div><div class="t"></div></div><div class="bar3d filled"><div class="f"></div><div class="r"></div><div class="t"></div></div><div class="bar3d"><div class="f"></div><div class="r"></div><div class="t"></div></div></div></div><h3>Intensivo</h3><p><strong>6 meses</strong><br>Mesmo conteúdo, concluído num prazo mais curto.</p></div>
+      <div class="modalidade-card"><div class="icon3d-pace"><div class="bars-3d"><div class="bar3d filled"><div class="f"></div><div class="r"></div><div class="t"></div></div><div class="bar3d filled"><div class="f"></div><div class="r"></div><div class="t"></div></div><div class="bar3d filled"><div class="f"></div><div class="r"></div><div class="t"></div></div></div></div><h3>Superintensivo</h3><p><strong>4 meses</strong><br>A duração mínima possível, pra quem quer o certificado o quanto antes.</p></div>
     </div>
 
     <h3 style="font-size:1.15rem; margin:0 0 16px;">Categorias de curso</h3>
     <div class="grid-entrar" style="margin-bottom:32px;">
-      <div class="entrar-card"><div class="icone">📘</div><h3>Tradicional</h3><p>A maior parte do catálogo. Disponível nos 3 ritmos: EAD, Intensivo e Superintensivo.</p></div>
-      <div class="entrar-card"><div class="icone">⭐</div><h3>Premium</h3><p>Cursos com maior densidade de conteúdo ou procura. Também nos 3 ritmos.</p></div>
-      <div class="entrar-card"><div class="icone">🔴</div><h3>Pós ao Vivo</h3><p>Aulas transmitidas ao vivo. Disponível só no ritmo EAD (10 a 12 meses).</p></div>
-      <div class="entrar-card"><div class="icone">🧩</div><h3>Pós do Seu Jeito</h3><p>Formato mais flexível de estudo. Disponível só no ritmo EAD (10 a 12 meses).</p></div>
+      <div class="entrar-card"><div class="icon3d-coin"><div class="coin-inner"><div class="coin-back"></div><div class="coin-face"><svg class="icon-book" viewBox="0 0 26 26"><path d="M4 5.5C4 4.7 4.7 4 5.5 4H12v18H5.5C4.7 22 4 21.3 4 20.5V5.5Z"/><path d="M22 5.5C22 4.7 21.3 4 20.5 4H14v18h6.5c.8 0 1.5-.7 1.5-1.5V5.5Z"/></svg></div></div></div><h3>Tradicional</h3><p>A maior parte do catálogo. Disponível nos 3 ritmos: EAD, Intensivo e Superintensivo.</p></div>
+      <div class="entrar-card"><div class="icon3d-coin"><div class="coin-inner"><div class="coin-back"></div><div class="coin-face"><svg class="icon-star" viewBox="0 0 26 26"><path d="M13 3l2.9 6.1 6.6.7-4.9 4.6 1.3 6.6L13 17.9 7.1 21l1.3-6.6L3.5 9.8l6.6-.7L13 3Z"/></svg></div></div></div><h3>Premium</h3><p>Cursos com maior densidade de conteúdo ou procura. Também nos 3 ritmos.</p></div>
+      <div class="entrar-card"><div class="icon3d-coin"><div class="coin-inner"><div class="coin-back"></div><div class="coin-face"><div class="live-dot-wrap"><span class="live-ring"></span><span class="live-dot"></span></div></div></div></div><h3>Pós ao Vivo</h3><p>Aulas transmitidas ao vivo. Disponível só no ritmo EAD (10 a 12 meses).</p></div>
+      <div class="entrar-card"><div class="icon3d-coin"><div class="coin-inner"><div class="coin-back"></div><div class="coin-face"><svg class="icon-sliders" viewBox="0 0 26 26"><line x1="4" y1="7" x2="22" y2="7"/><circle cx="15" cy="7" r="2.2"/><line x1="4" y1="13" x2="22" y2="13"/><circle cx="9" cy="13" r="2.2"/><line x1="4" y1="19" x2="22" y2="19"/><circle cx="18" cy="19" r="2.2"/></svg></div></div></div><h3>Pós do Seu Jeito</h3><p>Formato mais flexível de estudo. Disponível só no ritmo EAD (10 a 12 meses).</p></div>
     </div>
 
     <div style="background:#fff; border-radius:12px; padding:26px 28px; max-width:680px;">
@@ -471,6 +521,7 @@
 </div>
 
 <footer class="site">
+  <canvas id="footerSignature" class="foot-signature" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="foot-top">
       <div class="foot-brand">
@@ -656,6 +707,93 @@
         d.vx *= 0.80; d.vy *= 0.80;
         d.x += d.vx; d.y += d.vy;
         ctx.fillRect(d.x, d.y, 2.2, 2.2);
+      }
+      requestAnimationFrame(tick);
+    }
+    tick();
+  })();
+
+  /* ---- Dot-matrix brand signature covering the footer ---- */
+  (function () {
+    if (reduceMotion) return;
+    var footer = document.querySelector('footer.site');
+    var canvas = document.getElementById('footerSignature');
+    if (!footer || !canvas || !window.CanvasRenderingContext2D) return;
+
+    var text = 'ANHANGUERA';
+    var dpr = window.devicePixelRatio || 1;
+    var cw, ch, ctx, dots = [];
+
+    function build() {
+      var r = footer.getBoundingClientRect();
+      cw = Math.round(r.width);
+      ch = Math.round(r.height);
+      if (cw < 10 || ch < 10) return false;
+      canvas.width = cw * dpr;
+      canvas.height = ch * dpr;
+      canvas.style.width = cw + 'px';
+      canvas.style.height = ch + 'px';
+      ctx = canvas.getContext('2d');
+      ctx.scale(dpr, dpr);
+
+      var off = document.createElement('canvas');
+      off.width = cw; off.height = ch;
+      var octx = off.getContext('2d');
+      octx.fillStyle = '#000';
+      var baseSize = 100;
+      octx.font = '800 ' + baseSize + 'px Roboto, Arial, sans-serif';
+      var baseW = octx.measureText(text).width;
+      var sizeByWidth = (cw * 0.88) / baseW * baseSize;
+      var sizeByHeight = Math.max(56, Math.min(170, cw * 0.34));
+      var fontSize = Math.max(28, Math.min(sizeByWidth, sizeByHeight));
+      octx.font = '800 ' + fontSize + 'px Roboto, Arial, sans-serif';
+      octx.textBaseline = 'middle';
+      var textW = octx.measureText(text).width;
+      var textY = ch - fontSize * 0.75;
+      octx.fillText(text, (cw - textW) / 2, textY);
+      var data = octx.getImageData(0, 0, cw, ch).data;
+
+      var step = 6;
+      dots = [];
+      for (var y = 0; y < ch; y += step) {
+        for (var x = 0; x < cw; x += step) {
+          var idx = (y * cw + x) * 4 + 3;
+          if (data[idx] > 128) dots.push({ hx: x, hy: y, x: x, y: y, vx: 0, vy: 0 });
+        }
+      }
+      return dots.length > 0;
+    }
+
+    if (!build()) return;
+
+    var pointer = { x: -9999, y: -9999 };
+    function setPointer(clientX, clientY) {
+      var r = footer.getBoundingClientRect();
+      pointer.x = clientX - r.left;
+      pointer.y = clientY - r.top;
+    }
+    footer.addEventListener('pointermove', function (e) { setPointer(e.clientX, e.clientY); });
+    footer.addEventListener('pointerleave', function () { pointer.x = -9999; pointer.y = -9999; });
+    footer.addEventListener('touchmove', function (e) {
+      if (e.touches && e.touches[0]) setPointer(e.touches[0].clientX, e.touches[0].clientY);
+    }, { passive: true });
+    footer.addEventListener('touchend', function () { pointer.x = -9999; pointer.y = -9999; });
+
+    function tick() {
+      ctx.clearRect(0, 0, cw, ch);
+      ctx.fillStyle = 'rgba(255,255,255,0.16)';
+      for (var i = 0; i < dots.length; i++) {
+        var d = dots[i];
+        var dx = d.x - pointer.x, dy = d.y - pointer.y;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        var force = dist < 70 ? (70 - dist) / 70 : 0;
+        var ax = dist ? (dx / dist) * force * 20 : 0;
+        var ay = dist ? (dy / dist) * force * 20 : 0;
+        d.vx += ((d.hx + ax) - d.x) * 0.09;
+        d.vy += ((d.hy + ay) - d.y) * 0.09;
+        d.vx *= 0.80; d.vy *= 0.80;
+        d.x += d.vx; d.y += d.vy;
+        ctx.fillRect(d.x, d.y, 2.4, 2.4);
       }
       requestAnimationFrame(tick);
     }
