@@ -84,6 +84,18 @@
   .banner-strip img.wordmark { height: 60px; margin: 0 auto 22px; }
   .banner-strip .selo-row { display: flex; align-items: center; justify-content: center; gap: 18px; flex-wrap: wrap; }
   .banner-strip .selo-row img.selo { width: 108px; height: 108px; border-radius: 50%; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+  .selo-globo { position: relative; width: 108px; height: 108px; flex-shrink: 0; perspective: 340px; }
+  .selo-globo .orbit { width: 100%; height: 100%; animation: selo-orbit 3.6s ease-in-out infinite; }
+  .selo-globo .spin { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; animation: selo-spin 9s linear infinite; }
+  .selo-globo .spin img.selo { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 50%; box-shadow: 0 8px 20px rgba(0,0,0,0.22); backface-visibility: hidden; }
+  .selo-globo .spin img.face-b { transform: rotateY(180deg); }
+  .selo-globo .sheen { position: absolute; inset: 0; border-radius: 50%; pointer-events: none; background: radial-gradient(circle at 32% 26%, rgba(255,255,255,0.6), rgba(255,255,255,0) 42%), radial-gradient(circle at 70% 80%, rgba(0,0,0,0.3), rgba(0,0,0,0) 55%); }
+  @keyframes selo-spin { from { transform: rotateY(0deg); } to { transform: rotateY(360deg); } }
+  @keyframes selo-orbit { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+  @media (prefers-reduced-motion: reduce) {
+    .selo-globo .orbit, .selo-globo .spin { animation: none !important; }
+    .selo-globo .spin img.face-b { display: none; }
+  }
   .banner-strip .selo-row .info { text-align: left; }
   .banner-strip .selo-row strong { display: block; font-size: 1.2rem; }
   .banner-strip .selo-row span { color: var(--texto-claro); font-size: 0.92rem; }
@@ -281,7 +293,15 @@
   <div class="wrap">
     <img class="wordmark" src="img/logo-anhanguera.png" alt="Anhanguera">
     <div class="selo-row">
-      <img class="selo" src="img/selo-polo.png" alt="Selo Polo Anhanguera Campinas XIII e IX">
+      <div class="selo-globo">
+        <div class="orbit">
+          <div class="spin">
+            <img class="selo face-a" src="img/selo-polo.png" alt="Selo Polo Anhanguera Campinas XIII e IX">
+            <img class="selo face-b" src="img/selo-polo.png" alt="" aria-hidden="true">
+          </div>
+          <div class="sheen"></div>
+        </div>
+      </div>
       <div class="info">
         <strong>Polo Anhanguera Campinas</strong>
         <span>Unidades Barão Geraldo &amp; Jardim Nova Europa</span>
