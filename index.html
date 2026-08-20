@@ -803,7 +803,7 @@
         d.vy += ((d.hy + ay) - d.y) * 0.09;
         d.vx *= 0.80; d.vy *= 0.80;
         d.x += d.vx; d.y += d.vy;
-        ctx.fillRect(d.x, d.y, dotSize, dotSize);
+        ctx.fillRect(Math.round(d.x), Math.round(d.y), dotSize, dotSize);
       }
       requestAnimationFrame(tick);
     }
@@ -819,8 +819,9 @@
     minFontSize: 26,
     maxFontSize: 110,
     lineHeightMult: 1.5,
-    step: 5,
-    dotSize: 2.8,
+    step: 4,
+    dotSize: 3.4,
+    dotColor: getComputedStyle(document.documentElement).getPropertyValue('--laranja').trim() || '#FFA94D',
     radius: 75,
     force: 20
   });
