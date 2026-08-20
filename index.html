@@ -736,6 +736,8 @@
     var fontSize = Math.min(opts.maxFontSize || 999, sizeByWidth);
     if (opts.minFontSize) fontSize = Math.max(fontSize, Math.min(opts.minFontSize, sizeByWidth));
 
+    if (fontSize < (opts.legibilityFloor || 24)) return;
+
     var canvas = document.createElement('canvas');
     var dpr = window.devicePixelRatio || 1;
     var cw = w, ch = Math.round(fontSize * (opts.lineHeightMult || 1.7));
@@ -809,7 +811,7 @@
   }
 
   /* ---- Dot-matrix interactive signature (CTA final) ---- */
-  buildDotText('dotSignature', { widthRatio: 0.98, minFontSize: 16, maxFontSize: 34 });
+  buildDotText('dotSignature', { widthRatio: 0.98, minFontSize: 16, maxFontSize: 34, legibilityFloor: 30 });
 
   /* ---- Dot-matrix brand banner (below Depoimentos) ---- */
   buildDotText('marcaDots', {
