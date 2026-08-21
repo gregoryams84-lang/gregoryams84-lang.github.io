@@ -40,7 +40,11 @@
 
   /* scroll reveal */
   .reveal { opacity: 0; transform: translateY(24px); }
-  .reveal.in-view { opacity: 1; transform: translateY(0); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+  .reveal.in-view { opacity: 1; transform: translateY(0); transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.16,1,0.3,1); transition-delay: calc(var(--stagger-i, 0) * 70ms); }
+  /* re-declare hover transitions at higher specificity so the reveal rule above doesn't clobber them once .in-view is permanent */
+  .card-curso.reveal.in-view, .modalidade-card.reveal.in-view { transition-property: opacity, transform, box-shadow; transition-duration: 0.65s, 0.65s, 0.35s; transition-timing-function: ease, cubic-bezier(0.16,1,0.3,1), cubic-bezier(0.16,1,0.3,1); transition-delay: calc(var(--stagger-i, 0) * 70ms), calc(var(--stagger-i, 0) * 70ms), 0s; }
+  .entrar-card.reveal.in-view { transition-property: opacity, transform, box-shadow, background-color; transition-duration: 0.65s, 0.65s, 0.35s, 0.35s; transition-timing-function: ease, cubic-bezier(0.16,1,0.3,1), cubic-bezier(0.16,1,0.3,1), ease; transition-delay: calc(var(--stagger-i, 0) * 70ms), calc(var(--stagger-i, 0) * 70ms), 0s, 0s; }
+  .depoimento-card.reveal.in-view { transition-property: opacity, transform, border-color, background-color; transition-duration: 0.65s, 0.65s, 0.35s, 0.35s; transition-timing-function: ease, cubic-bezier(0.16,1,0.3,1), ease, ease; transition-delay: calc(var(--stagger-i, 0) * 70ms), calc(var(--stagger-i, 0) * 70ms), 0s, 0s; }
   @media (prefers-reduced-motion: reduce) {
     .reveal { opacity: 1; transform: none; }
   }
@@ -53,7 +57,8 @@
   }
 
   /* header */
-  header.site { position: sticky; top: 0; z-index: 50; background: #fff; box-shadow: 0 1px 8px rgba(0,0,0,0.06); }
+  header.site { position: sticky; top: 0; z-index: 50; background: #fff; box-shadow: 0 1px 8px rgba(0,0,0,0.06); transition: background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease; }
+  header.site.scrolled { background: rgba(255,255,255,0.78); backdrop-filter: blur(14px) saturate(160%); -webkit-backdrop-filter: blur(14px) saturate(160%); box-shadow: 0 4px 24px rgba(20,20,20,0.08); }
   .nav-inner { max-width: 1180px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
   .nav-logo img { height: 40px; width: auto; }
   nav.links { display: flex; gap: 26px; flex: 1; justify-content: center; flex-wrap: wrap; }
@@ -115,8 +120,8 @@
   .grid-cursos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
   @media (max-width: 980px) { .grid-cursos { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 620px) { .grid-cursos { grid-template-columns: 1fr; } }
-  .card-curso { border: 1px solid #eee; border-radius: 12px; overflow: hidden; background: #fff; transition: box-shadow 0.15s ease, transform 0.15s ease; }
-  .card-curso:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); transform: translateY(-3px); }
+  .card-curso { border: 1px solid #f0efec; border-radius: 14px; overflow: hidden; background: #fff; box-shadow: 0 1px 2px rgba(20,20,20,0.04); transition: box-shadow 0.35s cubic-bezier(0.16,1,0.3,1), transform 0.35s cubic-bezier(0.16,1,0.3,1); }
+  .card-curso:hover { box-shadow: 0 24px 44px -16px rgba(20,20,20,0.16), 0 4px 12px rgba(20,20,20,0.06); transform: translateY(-6px); }
   .card-curso .top { height: 140px; overflow: hidden; }
   .card-curso .top img { width: 100%; height: 100%; object-fit: cover; }
   .card-curso .body { padding: 18px 20px 22px; }
@@ -138,7 +143,8 @@
   /* como entrar */
   .grid-entrar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
   @media (max-width: 760px) { .grid-entrar { grid-template-columns: 1fr; } }
-  .entrar-card { background: var(--cinza-claro); border-radius: 12px; padding: 26px 22px; text-align: center; }
+  .entrar-card { background: var(--cinza-claro); border-radius: 14px; padding: 26px 22px; text-align: center; transition: box-shadow 0.35s cubic-bezier(0.16,1,0.3,1), transform 0.35s cubic-bezier(0.16,1,0.3,1), background-color 0.35s ease; }
+  .entrar-card:hover { background: #fff; box-shadow: 0 20px 38px -16px rgba(20,20,20,0.14), 0 3px 10px rgba(20,20,20,0.05); transform: translateY(-5px); }
   .entrar-card .icone { font-size: 2rem; margin-bottom: 12px; }
   .entrar-card h3 { font-size: 1.02rem; margin: 0 0 8px; }
   .entrar-card p { color: var(--texto-claro); font-size: 0.88rem; margin: 0 0 18px; min-height: 54px; }
@@ -171,7 +177,8 @@
   .grid-pos-modalidades { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 900px; margin-bottom: 40px; }
   @media (max-width: 760px) { .grid-pos-modalidades { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 500px) { .grid-pos-modalidades { grid-template-columns: 1fr; } }
-  .modalidade-card { background: #fff; border-radius: 12px; padding: 28px 24px; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .modalidade-card { background: #fff; border-radius: 14px; padding: 28px 24px; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.06); transition: box-shadow 0.35s cubic-bezier(0.16,1,0.3,1), transform 0.35s cubic-bezier(0.16,1,0.3,1); }
+  .modalidade-card:hover { box-shadow: 0 20px 38px -16px rgba(20,20,20,0.14), 0 3px 10px rgba(20,20,20,0.05); transform: translateY(-5px); }
   .modalidade-card .icone { font-size: 2.2rem; margin-bottom: 14px; }
   .modalidade-card h3 { margin: 0 0 8px; }
   .modalidade-card p { color: var(--texto-claro); font-size: 0.88rem; margin: 0 0 20px; }
@@ -241,7 +248,8 @@
   .depoimentos h2 { color: #fff; }
   .grid-depoimentos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 32px; }
   @media (max-width: 760px) { .grid-depoimentos { grid-template-columns: 1fr; } }
-  .depoimento-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 26px; }
+  .depoimento-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 26px; transition: border-color 0.35s ease, transform 0.35s cubic-bezier(0.16,1,0.3,1), background-color 0.35s ease; }
+  .depoimento-card:hover { border-color: rgba(255,169,77,0.4); background: rgba(255,255,255,0.09); transform: translateY(-5px); }
   .depoimento-card .aspas { color: var(--laranja); font-size: 2rem; line-height: 1; margin-bottom: 10px; }
   .depoimento-card p.texto { color: #d8d8d8; font-size: 0.92rem; margin: 0 0 18px; }
   .depoimento-autor { display: flex; align-items: center; gap: 12px; }
@@ -616,6 +624,17 @@
 (function () {
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ---- Header frosted-glass on scroll ---- */
+  (function () {
+    var header = document.querySelector('header.site');
+    if (!header) return;
+    function onScroll() {
+      header.classList.toggle('scrolled', window.scrollY > 30);
+    }
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+
   /* ---- Mobile nav toggle ---- */
   (function () {
     var navToggle = document.getElementById('navToggle');
@@ -643,7 +662,14 @@
   if (!reduceMotion) {
     /* ---- Scroll reveal: cards + diferenciais items ---- */
     var revealSelectors = '.card-curso, .passo-card, .entrar-card, .modalidade-card, .depoimento-card, .faq-item, .dif-item';
-    document.querySelectorAll(revealSelectors).forEach(function (el) { el.classList.add('reveal'); });
+    var staggerCounts = new Map();
+    document.querySelectorAll(revealSelectors).forEach(function (el) {
+      el.classList.add('reveal');
+      var parent = el.parentElement;
+      var i = staggerCounts.get(parent) || 0;
+      el.style.setProperty('--stagger-i', Math.min(i, 6));
+      staggerCounts.set(parent, i + 1);
+    });
 
     var revealObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
